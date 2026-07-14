@@ -69,6 +69,9 @@ RUN for dir in /app/extensions /app/src/zero-token/extensions /app/.agent /app/.
       fi; \
     done
 
+# --- FIX: Remove problematic extensions before building ---
+RUN rm -rf extensions/matrix extensions/slack
+
 # A2UI bundle may fail under QEMU cross-compilation (e.g. building amd64
 # on Apple Silicon). CI builds natively per-arch so this is a no-op there.
 # Stub it so local cross-arch builds still succeed.
